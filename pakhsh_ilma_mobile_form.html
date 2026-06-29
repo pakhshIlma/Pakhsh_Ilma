@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<title>Pakhsh Ilma Form</title>
+<style>
+body{font-family:tahoma;background:#f5f5f5;padding:20px}
+.container{background:white;padding:15px;border-radius:10px;max-width:500px;margin:auto}
+input,select{width:100%;padding:10px;margin:5px 0}
+button{padding:10px;background:#2F5597;color:white;border:none;width:100%;border-radius:5px}
+</style>
+</head>
+<body>
+<div class="container">
+<h2>فرم ورود کالا - پخش ایلما</h2>
+
+<input id="id" placeholder="Product_ID">
+<input id="name" placeholder="Product_Name">
+<input id="category" placeholder="Category">
+<input id="publisher" placeholder="Publisher">
+<input id="price" placeholder="Price" type="number">
+<input id="wholesale" placeholder="Wholesale_Price" type="number">
+<input id="stock" placeholder="Stock" type="number">
+
+<select id="status">
+<option value="موجود">موجود</option>
+<option value="ناموجود">ناموجود</option>
+</select>
+
+<input id="image" placeholder="Image_Link">
+
+<button onclick="downloadCSV()">ذخیره و دانلود</button>
+</div>
+
+<script>
+function downloadCSV(){
+let data = [
+document.getElementById('id').value,
+document.getElementById('name').value,
+document.getElementById('category').value,
+document.getElementById('publisher').value,
+document.getElementById('price').value,
+document.getElementById('wholesale').value,
+document.getElementById('stock').value,
+document.getElementById('status').value,
+document.getElementById('image').value
+];
+
+let csv = "Product_ID,Product_Name,Category,Publisher,Price,Wholesale_Price,Stock,Status,Image_Link\n" + data.join(",");
+
+let blob = new Blob([csv], {type:"text/csv"});
+let a = document.createElement("a");
+a.href = URL.createObjectURL(blob);
+a.download = "pakhsh_ilma_data.csv";
+a.click();
+}
+</script>
+
+</body>
+</html>
